@@ -22,7 +22,7 @@ export async function POST(request) {
         return NextResponse.json({ code: "200", message: "success" });
       } else {
         return NextResponse.json({
-          code: "200",
+          code: "401",
           message: "failed to create Tag",
         });
       }
@@ -50,6 +50,26 @@ export async function GET(req) {
     const allTags = await prisma.Tag.findMany();
     if (allTags) {
       return NextResponse.json({ code: "200", Tags: allTags });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+export async function DELETE(req) {
+  try {
+    const data = await req.json();
+    if (data) {
+      const res = await prisma.Tag.delete({
+        where: {
+          name: data.name,
+        },
+      });
+      return NextResponse.json({ code: "200", message: "deleted" });
+    } else {
+      return NextResponse.json({
+        code: "401",
+        message: "There's some error",
+      });
     }
   } catch (error) {
     console.error(error);
