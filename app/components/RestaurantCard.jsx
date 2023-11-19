@@ -1,26 +1,33 @@
+"use client"
 import React from "react";
 import Link from "next/link";
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
   return (
-    <Link href="/restaurant/123">
-      {" "}
-      <div className="card w-96 bg-base-100 shadow-xl cursor-pointer">
-        <figure>
+    <Link href={`/restaurant/${props.slug}`}>
+      <div className="card w-96 bg-base-100 shadow-xl cursor-pointer max-h-[400px] flex flex-col hover:scale-125 hover:transition-all hover:duration-700">
+        <figure className="flex-shrink-0">
           <img
-            src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-            alt="Shoes"
+            src={props.image}
+            alt={props.title}
+            className="w-full h-[200px] object-cover"
           />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            Shoes!
+        <div className="card-body flex flex-col flex-grow">
+          <h2 className="card-title flex-shrink-0">
+            {props.title}
             <div className="badge badge-secondary">NEW</div>
           </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
+          <p className="flex-grow">{props.description}</p>
+          <div className="flex justify-between mt-5">
+            <div>
+              <p>Price: {props.avgPrice}đ</p>
+            </div>
+            <div className="">
+                <div className="badge badge-outline">
+                  {props.firstTag}
+                </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,3 +1,3 @@
 "use client"
 
-export {Shuffle,MoreHorizontal} from "lucide-react";
+export {Shuffle,MoreHorizontal,Users,Utensils,Tag,ListChecks} from "lucide-react";

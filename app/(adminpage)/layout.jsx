@@ -13,7 +13,7 @@ export default async function DashboardLayout({ children }) {
     <html>
       <body className={inter.className}>
         <AuthProviders>
-          <div className="px-40 py-5 bg-red-200">
+          <div className="w-full p-10">
             <SideBar />
             {children}
           </div>

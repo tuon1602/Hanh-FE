@@ -1,21 +1,18 @@
 import React from "react";
 import FoodIcon from "@/app/assets/foodicon.png";
 import Link from "next/link";
+import CustomInput from "./explore/CustomInput";
 
 const Navbar = () => {
   return (
     <div className="">
       <div className="navbar bg-base-100 flex justify-between">
         <div className="">
-          <Link href="/"><button className="btn btn-ghost text-xl">FoodTour</button></Link>
+          <Link href="/">
+            <button className="btn btn-ghost text-xl">FoodTour</button>
+          </Link>
         </div>
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
-        </div>
+        <CustomInput />
         <div className="flex gap-5">
           <Link href="/random">Ngẫu nghiên</Link>
           <Link href="/explore">Khám phá</Link>
