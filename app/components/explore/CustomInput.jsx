@@ -11,7 +11,7 @@ const CustomInput = () => {
     if (data && event.key === "Enter") {
       event.preventDefault();
       router.push(`/explore?keyword=${data}`);
-
+   
     }
   };
   return (

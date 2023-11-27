@@ -14,7 +14,7 @@ const Navbar = () => {
         </div>
         <CustomInput />
         <div className="flex gap-5">
-          <Link href="/random">Ngẫu nghiên</Link>
+          <Link href="/add-restaurant">Thêm nhà hàng</Link>
           <Link href="/explore">Khám phá</Link>
           <Link href="/gioithieu">Giới thiệu</Link>
           <Link href="/faq">FAQ</Link>

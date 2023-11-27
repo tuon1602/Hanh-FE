@@ -20,9 +20,9 @@ model Tag {
 }
 
 model Restaurant {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  slug             String   @unique
-  title            String   @unique
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  slug             String    @unique
+  title            String    @unique
   avgPrice         Int
   address          String
   phoneNumber      String
@@ -31,13 +31,29 @@ model Restaurant {
   images           String[]
   description      String
   tags             String[]
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  // openAt           String
+  // endAt            String
+  // reviews          String
+  comments         Comment[]
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 }
 
 model Comment {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  content    String
-  name       String
-  starRating Int
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  content      String
+  name         String
+  starRating   Int
+  restaurantId String
+  createdAt    DateTime   @default(now())
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+model ReqRestaurant {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  address     String
+  website     String
+  smallDetail String
+  status      Boolean
 }

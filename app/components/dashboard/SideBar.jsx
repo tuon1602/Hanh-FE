@@ -7,7 +7,7 @@ import { signOut, useSession } from "next-auth/react";
 const SideBar = () => {
   const session = useSession();
   return (
-    <div className="top-0 left-0 fixed w-full p-10">
+    <div className="top-0 left-0 fixed w-full p-10 z-99 bg-base-200">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/"><button className="btn">FoodTour</button></Link>
@@ -15,7 +15,8 @@ const SideBar = () => {
         </div>
 
         <div className="flex gap-4">
-          <Link href="/dashboard/">DashBoard</Link>
+          <Link href="/dashboard/">Dashboard</Link>
+          <Link href="/dashboard/manage-request">Manage request</Link>
           <Link href="/dashboard/manage-restaurants">Manage restaurant</Link>
           <Link href="/dashboard/manage-tags">Manage tag</Link>
           <Link href="/dashboard/manage-users">Manage user</Link>

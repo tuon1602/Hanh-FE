@@ -1,12 +1,13 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
+import { formatToVN } from "@/lib/helper";
 
 const RestaurantCard = (props) => {
   return (
     <Link href={`/restaurant/${props.slug}`}>
       <div className="card w-96 bg-base-100 shadow-xl cursor-pointer max-h-[400px] flex flex-col hover:scale-125 hover:transition-all hover:duration-700">
-        <figure className="flex-shrink-0">
+        <figure className="">
           <img
             src={props.image}
             alt={props.title}
@@ -21,12 +22,10 @@ const RestaurantCard = (props) => {
           <p className="flex-grow">{props.description}</p>
           <div className="flex justify-between mt-5">
             <div>
-              <p>Price: {props.avgPrice}đ</p>
+              <p>Price: {formatToVN(props.avgPrice)}</p>
             </div>
             <div className="">
-                <div className="badge badge-outline">
-                  {props.firstTag}
-                </div>
+              <div className="badge badge-outline">{props.firstTag}</div>
             </div>
           </div>
         </div>

@@ -1,6 +1,16 @@
 import prisma from "@/lib/db/prisma";
 import { NextResponse } from "next/server";
 
+
+/**
+ * @swagger
+ * /api/hello:
+ *   get:
+ *     description: Returns the hello world
+ *     responses:
+ *       200:
+ *         description: Hello World!
+ */
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
@@ -24,6 +34,9 @@ export async function GET(req) {
         where: {
           slug: slug,
         },
+        include:{
+          comments: true
+        }
       });
       return NextResponse.json({
         code: "200",
@@ -62,5 +75,27 @@ export async function POST(request) {
   } catch (error) {
     console.error(error);
     return NextResponse.json({ code: "500", message: "Server error" });
+  }
+}
+export async function DELETE(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    if (id) {
+      const RestaurantDelete = await prisma.Restaurant.delete({
+        where: {
+          id: id,
+        },
+      });
+      if (RestaurantDelete) {
+        return NextResponse.json({ code: "200", message: "Restaurant deleted" });
+      } else {
+        return NextResponse.json({ code: "404", message: "Restaurant not found" });
+      }
+    } else {
+      return NextResponse.json({ code: "404", message: "Restaurant not found" });
+    }
+  } catch (error) {
+    console.error(error);
   }
 }

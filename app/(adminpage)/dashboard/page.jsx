@@ -9,10 +9,10 @@ import DashboardCard from "@/app/components/dashboard/DashboardCard";
 import { Tag, Utensils, Users, ListChecks } from "@/app/components/IconWrapper";
 
 const DashBoardPage = () => {
-  const session = useSession();
-  if (session.status === "unauthenticated") {
-    redirect("/login");
-  }
+  // const session = useSession();
+  // if (session.status === "unauthenticated") {
+  //   redirect("/login");
+  // }
   return (
     <div className="mt-32">
       <div className="flex justify-center gap-20">

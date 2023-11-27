@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import React from "react";
-
+import RestaurantTable from "@/app/components/dashboard/tables/RestaurantTable";
+import RestaurantAdd from "@/app/components/dashboard/RestaurantAdd";
 const RestaurantManagePage = () => {
   return (
     <div className="mt-32">
@@ -17,13 +18,15 @@ const RestaurantManagePage = () => {
           Add Restaurant
         </button>
         <dialog id="my_modal_1" className="modal">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Hello!</h3>
-            <p className="py-4">
-              Press ESC key or click the button below to close
-            </p>
+          <div className="modal-box max-w-5xl">
+            <h3 className="font-bold text-lg">Add Restaurant</h3>
+            <div>
+              <RestaurantAdd />
+            </div>
+
             <div className="modal-action">
               <form method="dialog">
+                {/* <MultiFileDropzoneUsage/> */}
                 {/* if there is a button in form, it will close the modal */}
                 <button className="btn">Close</button>
               </form>
@@ -31,46 +34,7 @@ const RestaurantManagePage = () => {
           </div>
         </dialog>
       </div>
-      <div className="overflow-x-auto px-20">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <td>Delete</td>
-            </tr>
-            {/* row 2 */}
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-              <td>Delete</td>
-            </tr>
-            {/* row 3 */}
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-              <td>Delete</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <RestaurantTable />
     </div>
   );
 };
