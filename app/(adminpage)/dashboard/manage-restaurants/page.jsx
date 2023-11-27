@@ -23,7 +23,6 @@ const RestaurantManagePage = () => {
             <div>
               <RestaurantAdd />
             </div>
-
             <div className="modal-action">
               <form method="dialog">
                 {/* <MultiFileDropzoneUsage/> */}

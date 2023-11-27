@@ -15,7 +15,7 @@ import Comment from "@/app/components/RestaurantDetail/Comment";
 
 export async function getRestaurantDetail(slug) {
   const data = await fetch(`${process.env.API_URL}/restaurant?slug=${slug}`, {
-    cache:"no-store"
+    cache: "no-store",
   });
   if (!data.ok) {
     throw new Error("failed to fetch restaurant");
@@ -31,13 +31,16 @@ const RestaurantDetail = async ({ params }) => {
       <div className="container mx-auto my-8">
         <div className="flex">
           <div className="mr-8 flex-shrink-0">
-            <Image
-              width={800}
-              height={800}
-              src={restaurantDetail.Restaurant.images[0]}
-              alt="Món ăn 1"
-              className="rounded-lg"
-            />
+            {restaurantDetail.Restaurant.images.length >= 1 &&
+              restaurantDetail.Restaurant.images && (
+                <Image
+                  width={800}
+                  height={800}
+                  src={restaurantDetail.Restaurant.images[0]}
+                  alt="Món ăn 1"
+                  className="rounded-lg"
+                />
+              )}
           </div>
 
           <div>
@@ -101,7 +104,29 @@ const RestaurantDetail = async ({ params }) => {
         <RestaurantCard />
         <RestaurantCard />
       </div> */}
-      <Comment data={restaurantDetail.Restaurant.comments} restaurantId={restaurantDetail.Restaurant.id}/>
+        <div className="mt-10">
+          <div className="collapse bg-base-200">
+            <input type="checkbox" />
+            <div className="collapse-title text-xl font-medium">
+              Một số hình ảnh của nhà hàng
+            </div>
+            <div className="collapse-content flex gap-5">
+              {restaurantDetail.Restaurant.images.length > 1 &&
+                restaurantDetail.Restaurant.images.map((item, index) => (
+                  <Image
+                    src={item}
+                    width={400}
+                    height={400}
+                    alt={restaurantDetail.Restaurant.slug}
+                  />
+                ))}
+            </div>
+          </div>
+        </div>
+        <Comment
+          data={restaurantDetail.Restaurant.comments}
+          restaurantId={restaurantDetail.Restaurant.id}
+        />
       </div>
     </div>
   );

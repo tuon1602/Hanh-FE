@@ -27,7 +27,7 @@ model Restaurant {
   address          String
   phoneNumber      String
   website          String
-  hasAnotherAdress Boolean
+  hasAnotherAdress Boolean?
   images           String[]
   description      String
   tags             String[]

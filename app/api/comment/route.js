@@ -57,7 +57,11 @@ export async function GET(req) {
         Comments: findAllCommentByKeyword,
       });
     }
-    const allComments = await prisma.Comment.findMany();
+    const allComments = await prisma.Comment.findMany({
+      orderBy:{
+        createdAt:'desc'
+      }
+    });
     if (allComments) {
       return NextResponse.json({ code: "200", Comments: allComments });
     } else {

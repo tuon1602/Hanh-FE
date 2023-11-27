@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -60,6 +61,9 @@ const Footer = () => {
               </svg>
             </a>
           </div>
+        </nav>
+        <nav>
+         <Link href="/login"><header className="footer-title">Dành cho nhà phát triển(Bấm vào đây)</header></Link> 
         </nav>
       </footer>
     </div>

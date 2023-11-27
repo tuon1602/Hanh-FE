@@ -7,8 +7,19 @@ import { signOut, useSession } from "next-auth/react";
 import SideBar from "@/app/components/dashboard/SideBar";
 import DashboardCard from "@/app/components/dashboard/DashboardCard";
 import { Tag, Utensils, Users, ListChecks } from "@/app/components/IconWrapper";
+import CommentTable from "@/app/components/dashboard/tables/CommentTable";
+import useSWR from "swr";
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const DashBoardPage = () => {
+  const { data, error, isLoading, mutate } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/dashboard`,
+    fetcher
+  );
+  //   console.log(data.Restaurant)
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>error wtf</div>;
+  console.log(data);
   // const session = useSession();
   // if (session.status === "unauthenticated") {
   //   redirect("/login");
@@ -16,58 +27,13 @@ const DashBoardPage = () => {
   return (
     <div className="mt-32">
       <div className="flex justify-center gap-20">
-        <DashboardCard icon={<Utensils />} title="Total restaurants" />
-        <DashboardCard icon={<Tag />} title="Total tags" />
-        <DashboardCard icon={<Users />} title="Total users" />
-        <DashboardCard icon={<ListChecks />} title="Restaurants user request" />
+        <DashboardCard icon={<Utensils />} title="Total restaurants" numberData={data?.data?.restaurantCount} />
+        <DashboardCard icon={<Tag />} title="Total tags" numberData={data?.data?.tagCount}/>
+        <DashboardCard icon={<Users />} title="Total Comment" numberData={data?.data?.commentCount}/>
+        <DashboardCard icon={<ListChecks />} title="Restaurants user request"numberData={data?.data?.ReqRestaurantCount} />
       </div>
       <div className="mt-20 text-center">
-        <h2 className="text-2xl font-bold">Latest Comments</h2>
-        <div className="overflow-x-auto px-20">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-                <td>Delete</td>
-
-              </tr>
-              {/* row 2 */}
-              <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-                <td>Delete</td>
-
-
-              </tr>
-              {/* row 3 */}
-              <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-                <td>Delete</td>
-
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <CommentTable />
       </div>
     </div>
   );
